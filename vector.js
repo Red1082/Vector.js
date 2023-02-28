@@ -80,8 +80,8 @@ export default class Vector {
 		return [this.x, this.y, this.z];
 	}
 	map(fun) {
-		if (typeof fun !== 'function')
-			throw 'vectorInstance.map() expects a function as the parameter';
+		if (typeof fun !== 'function' || isNaNStrict(fun(this.x)))
+			throw 'vectorInstance.map() expects a function that returns a number as the parameter';
 		this.x = fun(this.x);
 		this.y = fun(this.y);
 		this.z = fun(this.z);

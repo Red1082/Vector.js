@@ -1,6 +1,6 @@
 const isNaNStrict = value => typeof value !== 'number';
 const errorMessages = {
-	SET_METHOD_INVALID_PARAMS: 'vectorInstance.set() expects either a Vector instance or two or three three numbers as parameters'
+	SET_METHOD_INVALID_PARAMS: 'vectorInstance.set() expects either a Vector instance or either two or three numbers as parameters'
 };
 
 export default class Vector {
@@ -90,11 +90,10 @@ export default class Vector {
 	apply2DTransformation(matrix) {
 		if (matrix.length != 4 || matrix.some(matrixEntry => isNaNStrict(matrixEntry)))
 			throw 'Invalid matrix at vectorInstance.apply2DTransformation()';
-		return this.set(new Vector(
+		return this.set(
 			this.x * matrix[0] + this.y * matrix[2],
-			this.x * matrix[1] + this.y * matrix[3],
-			this.z
-		));
+			this.x * matrix[1] + this.y * matrix[3]
+		);
 	}
 	rotate2D(angle, pivotPoint) {
 		if (isNaNStrict(angle))
